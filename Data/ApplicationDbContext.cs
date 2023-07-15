@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using IdentityApp;
+using IdentityApp.Models;
 
 namespace IdentityApp.Data
 {
@@ -10,6 +10,6 @@ namespace IdentityApp.Data
             : base(options)
         {
         }
-        public DbSet<IdentityApp.Invoice>? Invoice { get; set; }
+        public DbSet<Invoice>? Invoice { get; set; }
     }
 }

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using IdentityApp;
 using IdentityApp.Data;
+using IdentityApp.Models;
 
 namespace IdentityApp.Pages.Invoices
 {
