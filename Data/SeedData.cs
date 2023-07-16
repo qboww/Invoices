@@ -8,7 +8,7 @@ namespace IdentityApp.Data
     {
         public static async Task Initialize(
             IServiceProvider serviceProvider,
-            string password = "Test@1234")
+            string password)
         {
             using (var context = new ApplicationDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
