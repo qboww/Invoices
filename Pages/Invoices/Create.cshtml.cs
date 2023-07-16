@@ -29,7 +29,7 @@ namespace IdentityApp.Pages.Invoices
         }
 
         [BindProperty]
-        public Invoice Invoice { get; set; } = default!;
+        public Invoice Invoice { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
