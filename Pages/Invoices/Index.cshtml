@@ -22,6 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Invoice[0].InvoiceOwner)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].Status)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -37,6 +40,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.InvoiceOwner)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.InvoiceId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.InvoiceId">Details</a> |
