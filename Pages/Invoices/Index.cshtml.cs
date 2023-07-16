@@ -33,10 +33,11 @@ namespace IdentityApp.Pages.Invoices
                            select i;
 
             var isManager = User.IsInRole(Constants.InvoiceManagersRole);
+            var isAdmin = User.IsInRole(Constants.InvoiceAdminRole);
 
             var currentUserId = UserManager.GetUserId(User);
 
-            if (isManager == false)
+            if (isManager == false && isAdmin == false)
             {
                 invoices = invoices.Where(i => i.CreatorId == currentUserId);
             }

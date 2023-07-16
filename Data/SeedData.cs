@@ -16,6 +16,10 @@ namespace IdentityApp.Data
                 // manager
                 var managerUid = await EnsureUser(serviceProvider, "manager@demo.com", password);
                 await EnsureRole(serviceProvider, managerUid, Constants.InvoiceManagersRole);
+
+                // admin
+                var adminUid = await EnsureUser(serviceProvider, "admin@demo.com", password);
+                await EnsureRole(serviceProvider, adminUid, Constants.InvoiceAdminRole);
             }
         }
 
