@@ -2,14 +2,15 @@
 @model IdentityApp.Pages.Invoices.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Database";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
+<p class="lead mt-5 mb-5" style="font-weight: bold">
+    <span>Here is your invoice management page</span>
+    <a style="float: right; background-color: rgb(42, 89, 63);" class="btn btn-primary create-button" asp-page="Create">Create new</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -25,30 +26,46 @@
             <th>
                 @Html.DisplayNameFor(model => model.Invoice[0].Status)
             </th>
-            <th></th>
+            <th>Operations</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Invoice) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.InvoiceAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InvoiceMonth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InvoiceOwner)
-            </td>
+        @foreach (var item in Model.Invoice)
+        {
+            <tr>
+                <td>
+                    $ @Html.DisplayFor(modelItem => item.InvoiceAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceMonth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceOwner)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.InvoiceId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.InvoiceId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.InvoiceId">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.InvoiceId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.InvoiceId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.InvoiceId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<style>
+    h1 {
+        line-height: 40px;
+    }
+
+    .create-button {
+        height: 40px;
+        line-height: 40px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+</style>
