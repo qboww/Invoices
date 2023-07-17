@@ -6,6 +6,57 @@
     ViewData["Title"] = "Home";
 }
 
+    <div class="text-center mt-5 mb-5">
+        <h1 class="display-4">Welcome</h1>
+        <p>This is our Invoice Management System.</p>
+    </div>
+
+    @if (User.IsInRole(Constants.InvoiceAdminRole))
+    {
+        <div class="chart-flex-container mb-5">
+            <div class="chart-container">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="newChart"></canvas>
+            </div>
+        </div>
+    }
+
+    <div class="card text-dark shadow-sm" style="margin-bottom: 200px;  width: 100%;">
+        <div class="card-body">
+            <h2 class="card-title">About Our Invoice Management System</h2>
+            <p class="card-text">
+                Invoices is a powerful and user-friendly invoice management system built using ASP.NET Core, EF Core, and Razor Pages. It streamlines the process of managing invoices, allowing you to focus on what matters most – your business.
+            </p>
+
+            <h3 class="card-title">Key Features:</h3>
+            <ul class="card-text">
+                <li>Efficiently create, view, and manage invoices with a simple and intuitive interface.</li>
+                <li>Seamless integration with EF Core, ensuring fast and reliable data access and storage.</li>
+                <li>Secure authentication and authorization mechanisms to protect your data.</li>
+                <li>Responsive design, making it accessible from any device – desktop, tablet, or smartphone.</li>
+                <li>Generate insightful reports and analytics to gain valuable business insights.</li>
+                <li>Customizable settings to tailor the application to your specific needs.</li>
+            </ul>
+
+            <h3 class="card-title">How to Get Started:</h3>
+            <p class="card-text">
+                To get started with the app, simply register and login. Whether you are a small business owner, freelancer, or a large enterprise, our invoice management system is designed to simplify your billing process and boost your productivity.
+            </p>
+
+            <h3 class="card-title">Technical Details:</h3>
+            <p class="card-text">
+                Our invoice management system is built on the foundation of ASP.NET Core, utilizing Razor Pages for front-end rendering and Entity Framework Core for data access and management. This ensures a robust and scalable application that can grow with your business needs.
+            </p>
+
+        <h3 class="card-title">Contact Us:</h3>
+        <p class="card-text">
+            We value your feedback and are eager to hear from you. If you have any questions, suggestions, or need assistance, please don't hesitate to contact our support team at <a href="mailto:evhenii.sarancha@gmail.com">evhenii.sarancha@gmail.com</a> or call us at +380680980403.
+        </p>
+        </div>
+    </div>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,55 +82,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 </head>
 <body>
-
-    <div class="text-center mb-5">
-        <h1 class="display-4 mt-5">Welcome</h1>
-        <p class="mb-5">This is our Invoice Management System.</p>
-    </div>
-
-    @if (User.IsInRole(Constants.InvoiceAdminRole))
-    {
-        <div class="chart-flex-container">
-            <div class="chart-container">
-                <canvas id="myChart"></canvas>
-            </div>
-            <div class="chart-container">
-                <canvas id="newChart"></canvas>
-            </div>
-        </div>
-    }
-
-    <div class="container" style="margin-bottom: 200px; margin-top: 100px; width: 100%;">
-        <h2>About Our Invoice Management System</h2>
-        <p>
-            Invoices is a powerful and user-friendly invoice management system built using ASP.NET Core, EF Core, and Razor Pages. It streamlines the process of managing invoices, allowing you to focus on what matters most – your business.
-        </p>
-
-        <h3>Key Features:</h3>
-        <ul>
-            <li>Efficiently create, view, and manage invoices with a simple and intuitive interface.</li>
-            <li>Seamless integration with EF Core, ensuring fast and reliable data access and storage.</li>
-            <li>Secure authentication and authorization mechanisms to protect your data.</li>
-            <li>Responsive design, making it accessible from any device – desktop, tablet, or smartphone.</li>
-            <li>Generate insightful reports and analytics to gain valuable business insights.</li>
-            <li>Customizable settings to tailor the application to your specific needs.</li>
-        </ul>
-
-        <h3>How to Get Started:</h3>
-        <p>
-            To get started with the app, simply register and login. Whether you are a small business owner, freelancer, or a large enterprise, our invoice management system is designed to simplify your billing process and boost your productivity.
-        </p>
-
-        <h3>Technical Details:</h3>
-        <p>
-            Our invoice management system is built on the foundation of ASP.NET Core, utilizing Razor Pages for front-end rendering and Entity Framework Core for data access and management. This ensures a robust and scalable application that can grow with your business needs.
-        </p>
-
-        <h3>Contact Us:</h3>
-        <p>
-            We value your feedback and are eager to hear from you. If you have any questions, suggestions, or need assistance, please don't hesitate to contact our support team at evhenii.sarancha@gmail.com or call us at +380680980403.
-        </p>
-    </div>
 
     @section Scripts {
         <script>

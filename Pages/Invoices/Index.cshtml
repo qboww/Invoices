@@ -5,13 +5,20 @@
     ViewData["Title"] = "Database";
 }
 
+@{
+    int pageSize = 7; // Number of items to display per page
+    int pageCount = (int)Math.Ceiling(Model.Invoice.Count / (double)pageSize);
+    int pageNumber = ViewData["PageNumber"] != null ? (int)ViewData["PageNumber"] : 1;
+    var paginatedItems = Model.Invoice.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+}
+
 
 <p class="lead mt-5 mb-5" style="font-weight: bold">
     <span>Here is your invoice management page</span>
-    <a style="float: right; background-color: rgb(42, 89, 63);" class="btn btn-primary create-button" asp-page="Create">Create new</a>
+    <a style="float: right; background-color: rgb(104, 158, 128);" class="btn btn-primary create-button" asp-page="Create">Create new</a>
 </p>
 
-<table class="table">
+<table class="table" style="text-align: center">
     <thead>
         <tr>
             <th>
@@ -54,6 +61,19 @@
         }
     </tbody>
 </table>
+
+<div class="pagination" style="margin-top: 10px;">
+    <nav aria-label="Invoice Pagination">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= pageCount; i++)
+            {
+                <li class="page-item @(i == pageNumber ? "active" : "")">
+                    <a class="page-link" href="?PageNumber=@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
 
 <style>
     h1 {
