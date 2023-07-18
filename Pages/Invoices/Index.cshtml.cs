@@ -16,7 +16,6 @@ namespace IdentityApp.Pages.Invoices
     [AllowAnonymous]
     public class IndexModel : DI_BasePageModel
     {
-
         public IndexModel(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
@@ -25,10 +24,15 @@ namespace IdentityApp.Pages.Invoices
         {
         }
 
-        public IList<Invoice> Invoice { get;set; }
+        public IList<Invoice> Invoice { get; set; }
+        public int PageIndex { get; set; }
+        public int TotalPages { get; set; }
+        public List<Invoice> PaginatedInvoiceList { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int pageIndex = 1)
         {
+            const int pageSize = 6;
+
             var invoices = from i in Context.Invoice
                            select i;
 
@@ -42,7 +46,21 @@ namespace IdentityApp.Pages.Invoices
                 invoices = invoices.Where(i => i.CreatorId == currentUserId);
             }
 
-            Invoice = await invoices.ToListAsync();
+            var totalItems = await invoices.CountAsync();
+            TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+            PageIndex = pageIndex > 0 ? pageIndex : 1;
+            PageIndex = pageIndex > TotalPages ? TotalPages : pageIndex;
+
+            var skipAmount = (PageIndex - 1) * pageSize;
+
+            PaginatedInvoiceList = await invoices
+                .OrderByDescending(invoice => invoice.InvoiceId)
+                .Skip(skipAmount)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return Page();
         }
     }
 }

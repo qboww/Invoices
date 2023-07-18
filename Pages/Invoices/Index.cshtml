@@ -5,20 +5,13 @@
     ViewData["Title"] = "Database";
 }
 
-@{
-    int pageSize = 7; // Number of items to display per page
-    int pageCount = (int)Math.Ceiling(Model.Invoice.Count / (double)pageSize);
-    int pageNumber = ViewData["PageNumber"] != null ? (int)ViewData["PageNumber"] : 1;
-    var paginatedItems = Model.Invoice.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-}
-
 
 <p class="lead mt-5 mb-5" style="font-weight: bold">
-    <span>Here is your invoice management page</span>
-    <a style="float: right; background-color: rgb(104, 158, 128);" class="btn btn-primary create-button" asp-page="Create">Create new</a>
+    <span>Manage your bills here</span>
+    <a style="float: right; background-color: rgb(27, 91, 56);" class="btn btn-primary create-button" asp-page="Create">Create new</a>
 </p>
 
-<table class="table" style="text-align: center">
+<table class="table" style="text-align: left">
     <thead>
         <tr>
             <th>
@@ -37,55 +30,54 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Invoice)
-        {
-            <tr>
-                <td>
-                    $ @Html.DisplayFor(modelItem => item.InvoiceAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InvoiceMonth)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InvoiceOwner)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.InvoiceId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.InvoiceId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.InvoiceId">Delete</a>
-                </td>
-            </tr>
-        }
+        @await Html.PartialAsync("_InvoiceTableRows", Model.PaginatedInvoiceList)
     </tbody>
 </table>
 
-<div class="pagination" style="margin-top: 10px;">
-    <nav aria-label="Invoice Pagination">
-        <ul class="pagination justify-content-center">
-            @for (int i = 1; i <= pageCount; i++)
-            {
-                <li class="page-item @(i == pageNumber ? "active" : "")">
-                    <a class="page-link" href="?PageNumber=@i">@i</a>
-                </li>
-            }
-        </ul>
-    </nav>
-</div>
+<nav aria-label="Invoice pagination">
+    <ul class="pagination justify-content-center">
+        @if (Model.PageIndex > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="?pageIndex=1">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?pageIndex=@(Model.PageIndex - 1)">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                <a class="page-link" href="?pageIndex=@i">@i</a>
+            </li>
+        }
+
+        @if (Model.PageIndex < Model.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" href="?pageIndex=@(Model.PageIndex + 1)">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?pageIndex=@Model.TotalPages">Last</a>
+            </li>
+        }
+    </ul>
+</nav>
 
 <style>
-    h1 {
-        line-height: 40px;
+
+    .pagination {
+        margin-top: 55px;
     }
 
-    .create-button {
-        height: 40px;
-        line-height: 40px;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
+        .pagination .page-item {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .pagination .active .page-link {
+            background-color: rgb(27, 91, 56);
+            border-color: rgb(27, 91, 56);
+        }
 </style>

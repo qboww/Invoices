@@ -1,0 +1,24 @@
+﻿@model List<IdentityApp.Models.Invoice>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            $ @Html.DisplayFor(modelItem => item.InvoiceAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceMonth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceOwner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            <a asp-page="./Edit" asp-route-id="@item.InvoiceId">Edit</a> |
+            <a asp-page="./Details" asp-route-id="@item.InvoiceId">Details</a> |
+            <a asp-page="./Delete" asp-route-id="@item.InvoiceId">Delete</a>
+        </td>
+    </tr>
+}
