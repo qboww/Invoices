@@ -6,7 +6,7 @@
 }
 
 
-<p class="lead mt-5 mb-5" style="font-weight: bold">
+<p class="lead mt-4 mb-4" style="font-weight: bold">
     <span>Manage your bills here</span>
     <a style="float: right; background-color: rgb(27, 91, 56);" class="btn btn-primary create-button" asp-page="Create">Create new</a>
 </p>
@@ -39,27 +39,27 @@
         @if (Model.PageIndex > 1)
         {
             <li class="page-item">
-                <a class="page-link" href="?pageIndex=1">First</a>
+                <a class="page-link shadow-none" href="?pageIndex=1">First</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?pageIndex=@(Model.PageIndex - 1)">Previous</a>
+                <a class="page-link shadow-none" href="?pageIndex=@(Model.PageIndex - 1)">Previous</a>
             </li>
         }
 
         @for (int i = 1; i <= Model.TotalPages; i++)
         {
             <li class="page-item @(Model.PageIndex == i ? "active" : "")">
-                <a class="page-link" href="?pageIndex=@i">@i</a>
+                <a class="page-link shadow-none" href="?pageIndex=@i">@i</a>
             </li>
         }
 
         @if (Model.PageIndex < Model.TotalPages)
         {
             <li class="page-item">
-                <a class="page-link" href="?pageIndex=@(Model.PageIndex + 1)">Next</a>
+                <a class="page-link shadow-none" href="?pageIndex=@(Model.PageIndex + 1)">Next</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?pageIndex=@Model.TotalPages">Last</a>
+                <a class="page-link shadow-none" href="?pageIndex=@Model.TotalPages">Last</a>
             </li>
         }
     </ul>
@@ -68,16 +68,17 @@
 <style>
 
     .pagination {
-        margin-top: 55px;
+        margin-top: 40px;
     }
 
         .pagination .page-item {
             display: inline-block;
-            margin: 5px;
+            margin: 0px;
         }
 
         .pagination .active .page-link {
             background-color: rgb(27, 91, 56);
             border-color: rgb(27, 91, 56);
         }
+    }
 </style>

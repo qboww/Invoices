@@ -31,7 +31,7 @@ namespace IdentityApp.Pages.Invoices
 
         public async Task<IActionResult> OnGetAsync(int pageIndex = 1)
         {
-            const int pageSize = 6;
+            const int pageSize = 7;
 
             var invoices = from i in Context.Invoice
                            select i;
