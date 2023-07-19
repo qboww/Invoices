@@ -46,8 +46,12 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var seedUserPass = builder.Configuration.GetValue<string>("SeedUserPass");
     var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+
+    var seedUserPass = builder.Configuration.GetValue<string>("SeedUserPass");
     await SeedData.Initialize(services, seedUserPass);
 }
 
