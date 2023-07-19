@@ -1,5 +1,5 @@
 # Invoices
-** Invoice management app**
+**Invoice management app**
 
 Used frameworks:
 - ASP.Net Core
