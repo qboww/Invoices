@@ -3,7 +3,7 @@
 
 Used frameworks:
 - ASP.Net Core
-- ASP.Ner Identity
+- ASP.Net Identity
 - Razor Pages
 - Entity Framework Core
 - Bootstrap 5
